@@ -1,0 +1,226 @@
+body {
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+#app {
+    height: 100%;
+}
+
+.relative{
+  position: relative;
+ 
+}
+.absolute{
+   position: absolute;
+}
+.flex {
+  
+  display: flex;
+}
+
+.flex-sub {
+  flex: 1;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-direction {
+  flex-direction: column;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.align-start {
+  align-items: flex-start;
+}
+
+.align-baseline {
+  align-items: baseline;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+.inline {
+    display: inline;
+}
+.block {
+    display: block;
+}
+.inline-block {
+    display: inline-block;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+// 百分比
+$directions: (
+  'w': width,
+  'h': height,
+  'm': margin,
+  'ml': margin-left,
+  'mt': margin-top,
+  'mr': margin-right,
+  'mb': margin-bottom,
+  'pl': padding-left,
+  'pt': padding-top,
+  'pr': padding-right,
+  'pb': padding-bottom,
+  'l': left,
+  't': top,
+  'r': right,
+  'b': bottom,
+  'br': border-radius
+);
+@each $dir in $directions {
+  @if (#{nth($dir, 1)}== 'm') {
+    .#{nth($dir,1)} {
+      #{nth($dir,2)}: auto;
+    }
+  } @else {
+    @for $i from 0 through 100 {
+      $size: $i;
+      .#{nth($dir,1)}_#{$size} {
+        #{nth($dir,2)}: #{$size}#{'%'};
+      }
+    }
+  }
+}
+
+//宽高px
+$unit_px: (
+  'w_x': width,
+  'h_x': height,
+  'ml_x': margin-left,
+  'mt_x': margin-top,
+  'mr_x': margin-right,
+  'mb_x': margin-bottom,
+  'pl_x': padding-left,
+  'pt_x': padding-top,
+  'pr_x': padding-right,
+  'pb_x': padding-bottom,
+  'l_x': left,
+  't_x': top,
+  'r_x': right,
+  'b_x': bottom,
+  'br_x': border-radius,
+  'fs_x': font-size
+);
+@each $var in $unit_px {
+  @for $i from 0 through 1000 {
+    $size: $i;
+    .#{nth($var,1)}_#{$size} {
+      #{nth($var,2)}: #{$size}#{'px'};
+    }
+  }
+}
+
+$calc_px:(
+  'wc_x': width,
+  'hc_x': height,
+  'mlc_x': margin-left,
+  'mtc_x': margin-top,
+  'mrc_x': margin-right,
+  'mbc_x': margin-bottom,
+  'plc_x': padding-left,
+  'ptc_x': padding-top,
+  'prc_x': padding-right,
+  'pbc_x': padding-bottom,
+  'lc_x': left,
+  'tc_x': top,
+  'rc_x': right,
+  'bc_x': bottom,
+  'brc_x': border-radius,
+  'fsc_x': font-size
+);
+@each $var in $calc_px {
+  @for $i from 0 through 1000 {
+    $size: $i;
+    .#{nth($var,1)}_#{$size} {
+      #{nth($var,2)}:calc(#{$size} * 1rem / 16 );
+    }
+  }
+}
+
+
+//计算
+$heightcalc: (
+  'h_c': height,
+  'w_c': width
+);
+
+@each $var in $heightcalc {
+  @for $i from 0 through 1000 {
+    $size: $i;
+    .#{nth($var,1)}_#{$size} {
+      #{nth($var,2)}: calc(100% - #{$size}#{'px'});
+    }
+  }
+}
+
+//文字省略
+$ellipsis: (
+  'ellipsis': ''
+);
+@each $var in $ellipsis {
+  @for $i from 1 through 1000 {
+    $size: $i;
+    .#{nth($var,1)}_#{$size} {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: $i;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
