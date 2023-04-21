@@ -59,7 +59,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
         compiler: "vue3"
     }),
       createSvgIconsPlugin({
-        iconDirs: [resolve("src/icons")],
+        iconDirs: [resolve("src/svg")],
         // 指定symbolId格式
         symbolId: "svg-[name]"
       }),

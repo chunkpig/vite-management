@@ -19,10 +19,10 @@ export const usePermissionStore=defineStore({
         }
     },
     actions: {
-      setRoute(routeList: AppRouteType[]) {
+        setRoute(routeList: AppRouteType[]) {
             this.route = routeList;
         },
-         async initRoute() {
+        async initRoute() {
             const useStore =['1','admin_dashboard'];
             const routeList = filterAsyncRoute(asyncRouter, useStore);
             sortRoute(routeList);

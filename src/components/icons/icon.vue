@@ -17,13 +17,20 @@ export default defineComponent({
       default: ''
     },
     size: {
-      type: Number,
+      type: [Number, String],
       default: 16
+    },
+    hover: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
     const iconStyle = computed(() => {
       return { color: props.color, fontSize: `${props.size || 16}px` };
+    });
+    const getHover = computed(() => {
+      return props.hover ? "icon icon-hover" : "icon";
     });
     //element-plus 图标
     const renderElIcon = () => {
@@ -41,7 +48,7 @@ export default defineComponent({
       const { svgName, color, size } = props
       if (svgName) {
         return (
-          <svg aria-hidden="true" style={iconStyle.value}>
+          <svg class={getHover.value} aria-hidden="true" style={iconStyle.value}>
             <use xlink:href={`#svg-${svgName}`}></use>
           </svg>
         )
@@ -61,5 +68,21 @@ export default defineComponent({
   }
 })
 </script>
-<style>
+<style lang="scss" scoped>
+.icon {
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+  line-height: 1em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+
+  &.icon-hover:hover {
+    color: var(--el-color-primary);
+    transform: scale(1.3);
+    vertical-align: -0.15em;
+  }
+}
 </style>

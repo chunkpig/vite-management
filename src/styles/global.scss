@@ -102,7 +102,11 @@ html {
 .pointer {
     cursor: pointer;
 }
-
+.text-hidden {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 // 百分比
 $directions: (
   'w': width,
@@ -131,7 +135,7 @@ $directions: (
     @for $i from 0 through 100 {
       $size: $i;
       .#{nth($dir,1)}_#{$size} {
-        #{nth($dir,2)}: #{$size}#{'%'};
+        #{nth($dir,2)}: #{$size}#{'%'} !important;
       }
     }
   }
@@ -160,7 +164,7 @@ $unit_px: (
   @for $i from 0 through 1000 {
     $size: $i;
     .#{nth($var,1)}_#{$size} {
-      #{nth($var,2)}: #{$size}#{'px'};
+      #{nth($var,2)}: #{$size}#{'px'} !important;
     }
   }
 }

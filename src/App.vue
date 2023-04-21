@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-import Icon from '@/components/icons/icon.vue'
 onMounted(() => {
   const clientWidth = document.body.clientWidth
   if (clientWidth >= 1200) {
